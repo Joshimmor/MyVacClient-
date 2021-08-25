@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-
+require('dotenv');
 @NgModule({
   declarations: [
     AppComponent
@@ -28,7 +28,7 @@ import { environment } from 'src/environments/environment';
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider(
-              environment.appid
+              `${process.env.appid}`
             )
           }
         ]
