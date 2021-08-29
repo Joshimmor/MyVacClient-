@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-require('dotenv');
+//import { config } from 'dotenv';
 @NgModule({
   declarations: [
     AppComponent
