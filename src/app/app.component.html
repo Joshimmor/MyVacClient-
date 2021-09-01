@@ -1,7 +1,14 @@
-<div class="wrapper" *ngIf="!isLoggedin">
-  <button type="button" (click)="loginWithFacebook()" class="btn btn-primary btn-block">Signin with Facebook</button>
+<div  class="loginwrapper">
+  <h1>My Vaccine Id</h1>
+  <div class="photo">
+    <img src="{{user.photoUrl}}" alt="">
+  </div>
+  <div class="namelabel">
+    <h2>{{user.name}}</h2>
+  </div>
+  <button (click)="signOut()">Sign Out</button>
 </div>
-<div *ngIf="isLoggedin">
-  <router-outlet></router-outlet>
-</div>
-
+<div class="loginwrapper" >
+  <h1>My Vaccine Id</h1>
+  <button (click)="signInWithFB()">Sign in with Facebook</button>
+  </div>

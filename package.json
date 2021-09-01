@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "config-ts": "ts-node set-env.ts",
+    "build": "npm run config-ts && ng build --aot --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -22,6 +23,7 @@
     "@angular/router": "~12.2.0",
     "angularx-social-login": "^4.0.1",
     "dotenv": "^10.0.0",
+    "os-browserify": "^0.3.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SocialAuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
@@ -8,38 +8,36 @@ import { SocialAuthService, FacebookLoginProvider, SocialUser } from 'angularx-s
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
 
-  loginForm: FormGroup;
-  //socialUser: SocialUser;
-  isLoggedin:boolean = false;
-  
+export class AppComponent implements OnChanges{
+  title = "MyVac"
+  user: SocialUser;
+  loggedIn: boolean;
+
   constructor(
     private formBuilder: FormBuilder, 
     private socialAuthService: SocialAuthService
-  ) { 
-    console.log(this.isLoggedin)
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    }); 
+  ) {
     this.socialAuthService.authState.subscribe((user) => {
-      // this.socialUser = user;
-      this.isLoggedin = true;
+      this.user = user;
+      this.loggedIn = (user != null);
     });
-  }
+   }
 
-  ngOnInit() {
-
-    
-  }
-
-  loginWithFacebook(): void {
+  ngOnChanges(change:SimpleChanges) {
+   this.printUser(change.user.currentValue)
+  } 
+  printUser(user){
+    console.log(user)
+  }  
+  signInWithFB(): void {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
-
   signOut(): void {
     this.socialAuthService.signOut();
+  }
+  refreshToken(): void {
+    this.socialAuthService.refreshAuthToken(FacebookLoginProvider.PROVIDER_ID);
   }
 
 }
